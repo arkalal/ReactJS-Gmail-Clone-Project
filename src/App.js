@@ -1,8 +1,9 @@
 import React from 'react';
+import Header from './header/Header';
 
 const App = () => {
     return <div>
-        <h2>Gmail Clone!!🚀</h2>
+        <Header></Header>
     </div>;
 };
 
