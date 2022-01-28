@@ -1,0 +1,15 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+}
+
+.composeBtn{
+    padding: 10px 20px;
+    color: black;
+    border-radius: 40px;
+    box-shadow: 2px 2px 3px #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    max-width: 150px;
+}
