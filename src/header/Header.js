@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css'
 import ReorderIcon from '@mui/icons-material/Reorder';
-import { IconButton } from '@mui/material';
+import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import HelpOutlinedIcon from '@mui/icons-material/HelpOutlined';
@@ -43,6 +43,8 @@ const Header = () => {
             <IconButton>
                 <AppsIcon></AppsIcon>
             </IconButton>
+
+            <Avatar src='https://lh3.googleusercontent.com/ogw/ADea4I51dMikJltVkYJVQk7gCUJZ65aDUZ4acmivr1_S=s64-c-mo'></Avatar>
         </div>
     </div>;
 };
