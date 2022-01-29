@@ -3,6 +3,7 @@ import Header from './header/Header';
 import Sidebar from './sidebar/Sidebar';
 import './App.css'
 import EmailList from './Email body/EmailList';
+import Compose from './compose/Compose';
 
 const App = () => {
     return <div>
@@ -12,6 +13,8 @@ const App = () => {
             <Sidebar></Sidebar>
             <EmailList></EmailList>
         </div>
+
+        <Compose></Compose>
     </div>;
 };
 
