@@ -15,10 +15,19 @@ import FindInPageIcon from '@mui/icons-material/FindInPage';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
+import { useDispatch } from 'react-redux';
+import { toggTrue } from '../redux store/composeSlice'
 
 const Sidebar = () => {
+
+    const dispatch = useDispatch()
+
+    const openCompose = () => {
+        dispatch(toggTrue())
+    }
+
     return <div className='sidebar'>
-        <Button startIcon={<AddIcon></AddIcon>} className='composeBtn'>Compose</Button>
+        <Button startIcon={<AddIcon></AddIcon>} className='composeBtn' onClick={openCompose}>Compose</Button>
 
         <div className="sideBarIcons">
             <SidebarOptions Icon={InboxIcon} title='Inbox' number='500' isActive></SidebarOptions>

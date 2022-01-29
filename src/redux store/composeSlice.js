@@ -6,12 +6,15 @@ const composeSlice = createSlice({
         value: false
     },
     reducers: {
-        togg: (state) => {
+        toggTrue: (state) => {
             state.value = true
+        },
+        toggFalse: (state) => {
+            state.value = false
         }
     }
 })
 
-export const { togg } = composeSlice.actions
+export const { toggTrue, toggFalse } = composeSlice.actions
 
 export default composeSlice.reducer

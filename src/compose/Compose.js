@@ -14,8 +14,17 @@ import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
 import CreateIcon from '@mui/icons-material/Create';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+import { toggFalse } from '../redux store/composeSlice';
 
 const Compose = () => {
+
+    const dispatch = useDispatch()
+
+    const closeCompose = () => {
+        dispatch(toggFalse())
+    }
+
     return <div className='compose'>
         <div className="compose-header">
             <div className="compose-headerLeft">
@@ -25,7 +34,7 @@ const Compose = () => {
             <div className="compose-headerRight">
                 <RemoveIcon></RemoveIcon>
                 <HeightIcon></HeightIcon>
-                <CloseIcon></CloseIcon>
+                <CloseIcon onClick={closeCompose}></CloseIcon>
             </div>
         </div>
 

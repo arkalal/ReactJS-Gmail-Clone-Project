@@ -4,8 +4,12 @@ import Sidebar from './sidebar/Sidebar';
 import './App.css'
 import EmailList from './Email body/EmailList';
 import Compose from './compose/Compose';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+
+    const isMessageOpen = useSelector((state) => state.compose.value)
+
     return <div>
         <Header></Header>
 
@@ -14,7 +18,9 @@ const App = () => {
             <EmailList></EmailList>
         </div>
 
-        <Compose></Compose>
+        {
+            isMessageOpen && <Compose></Compose>
+        }
     </div>;
 };
 
