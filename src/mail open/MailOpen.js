@@ -8,8 +8,11 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import StarIcon from '@mui/icons-material/Star';
 import ReplyIcon from '@mui/icons-material/Reply';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useSelector } from 'react-redux';
 
 const MailOpen = () => {
+
+    const emailDetailsOnBody = useSelector((state) => state.compose.selectedMessage)
 
     return <div className='emailDetail'>
         <EmailListSettings arrow></EmailListSettings>
@@ -17,7 +20,7 @@ const MailOpen = () => {
         <div className="emailDetail-Message">
             <div className="emailDetail-header">
                 <div className="emailDetail-headerLeft">
-                    <h4>This is subject</h4>
+                    <h4> {emailDetailsOnBody.subject} </h4>
 
                     <IconButton>
                         <LabelImportantIcon></LabelImportantIcon>
@@ -41,7 +44,7 @@ const MailOpen = () => {
                         <Avatar></Avatar>
                     </IconButton>
 
-                    <h4>Arkalal</h4>
+                    <h4> {emailDetailsOnBody.name} </h4>
                     <p>arkalal.chakravarty@gmail.com</p>
                 </div>
 
@@ -63,7 +66,7 @@ const MailOpen = () => {
             </div>
 
             <div className="emailDetails-Body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum adipisci velit fuga quam. Quae unde consequatur non magnam ducimus vitae error modi facere, commodi expedita? Repudiandae ipsa voluptate sequi, veritatis inventore accusamus rerum. Laudantium cumque ullam consequatur, dicta voluptas facere nemo iusto rem odit cupiditate blanditiis id magni adipisci, nesciunt laborum debitis aliquam labore commodi perspiciatis aliquid? Autem, impedit fugit quis sint sit modi delectus corrupti? Modi, neque deleniti natus deserunt nam facere! Asperiores quisquam qui recusandae temporibus ullam facere?</p>
+                <p> {emailDetailsOnBody.message} </p>
             </div>
         </div>
     </div>;
