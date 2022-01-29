@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebase/firebase';
 import EmailBody from './EmailBody';
 import './EmailList.css'
 import EmailListSettings from './EmailListSettings';
 import EmailType from './EmailType';
 
 const EmailList = () => {
+
+    const [Emails, setEmails] = useState([]);
+
+    useEffect(() => {
+        db.collection('composeData').orderBy('timestamp', 'desc').onSnapshot((collection) => {
+            setEmails(collection.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
+    }, [])
+
     return <div className='emailList'>
         <EmailListSettings></EmailListSettings>
         <EmailType></EmailType>
-        <EmailBody name='Arkalal' message='This is just a test hagsgasgdas I am something that cannnot be changes beacacahcahcjha of the aro kichu likhte obe beacuse na hole eta hobe nah' time='2:30 PM' subject='Test Subject'></EmailBody>
+
+        {
+            Emails.map(({ id, data }) => {
+                return <EmailBody key={id} name='Arkalal' message={data.emailText} time={new Date(data.timestamp?.seconds * 1000).toLocaleTimeString()} subject={data.sub}></EmailBody>
+            })
+        }
     </div>;
 };
 

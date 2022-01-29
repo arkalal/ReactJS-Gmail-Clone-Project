@@ -56,6 +56,8 @@ const Compose = () => {
         setMessage('')
 
         alert('Your Email is Sent!! 🚀🤟✓')
+
+        dispatch(toggFalse())
     }
 
     return <div className='compose'>
