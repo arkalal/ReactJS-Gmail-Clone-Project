@@ -3,9 +3,13 @@ import './EmailBody.css'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const EmailBody = ({ name, subject, message, time }) => {
-    return <div className='emailBody'>
+
+    const navigate = useNavigate()
+
+    return <div className='emailBody' onClick={() => { navigate('/mailbox') }}>
         <div className="emailBody-Left">
             <CheckBoxOutlineBlankIcon></CheckBoxOutlineBlankIcon>
             <StarBorderIcon></StarBorderIcon>

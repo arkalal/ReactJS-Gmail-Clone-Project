@@ -5,6 +5,8 @@ import './App.css'
 import EmailList from './Email body/EmailList';
 import Compose from './compose/Compose';
 import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import MailOpen from './mail open/MailOpen';
 
 const App = () => {
 
@@ -15,7 +17,12 @@ const App = () => {
 
         <div className="app-body">
             <Sidebar></Sidebar>
-            <EmailList></EmailList>
+
+            <Routes>
+                <Route path='/' element={<EmailList></EmailList>}></Route>
+                <Route path='/mailbox' element={<MailOpen></MailOpen>}></Route>
+            </Routes>
+
         </div>
 
         {
