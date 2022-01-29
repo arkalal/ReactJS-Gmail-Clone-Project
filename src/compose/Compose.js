@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Compose.css'
 import RemoveIcon from '@mui/icons-material/Remove';
 import HeightIcon from '@mui/icons-material/Height';
@@ -16,13 +16,46 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { toggFalse } from '../redux store/composeSlice';
+import { db } from '../firebase/firebase'
+import firebase from 'firebase';
 
 const Compose = () => {
+
+    const [Email, setEmail] = useState('');
+    const [Subject, setSubject] = useState('');
+    const [Message, setMessage] = useState('');
 
     const dispatch = useDispatch()
 
     const closeCompose = () => {
         dispatch(toggFalse())
+    }
+
+    const submitInput = (e) => {
+        e.preventDefault()
+
+        if (Email === '') {
+            alert('Email is required')
+        }
+        if (Subject === '') {
+            alert('Subject is required')
+        }
+        if (Message === '') {
+            alert('Message is required')
+        }
+
+        db.collection('composeData').add({
+            email: Email,
+            sub: Subject,
+            emailText: Message,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+
+        setEmail('')
+        setSubject('')
+        setMessage('')
+
+        alert('Your Email is Sent!! 🚀🤟✓')
     }
 
     return <div className='compose'>
@@ -38,36 +71,38 @@ const Compose = () => {
             </div>
         </div>
 
-        <div className="compose-body">
-            <div className="compose-bodyForm">
-                <input type="email" name="" id="" placeholder='Recipients' />
+        <form action="" onSubmit={submitInput}>
+            <div className="compose-body">
+                <div className="compose-bodyForm">
+                    <input type="email" name="" id="" placeholder='Recipients' value={Email} onChange={(e) => { setEmail(e.target.value) }} />
 
-                <input type="text" placeholder='Subject' />
+                    <input type="text" placeholder='Subject' value={Subject} onChange={(e) => { setSubject(e.target.value) }} />
 
-                <textarea name="" id="" cols="" rows="20"></textarea>
-            </div>
-        </div>
-
-        <div className="compose-footer">
-            <div className="compose-footerLeft">
-                <button type="submit">
-                    Send <ArrowDropDownIcon></ArrowDropDownIcon>
-                </button>
+                    <textarea name="" id="" cols="" rows="20" value={Message} onChange={(e) => { setMessage(e.target.value) }}></textarea>
+                </div>
             </div>
 
-            <div className="compose-footerRight">
-                <FormatColorTextIcon></FormatColorTextIcon>
-                <AttachFileIcon></AttachFileIcon>
-                <LinkIcon></LinkIcon>
-                <InsertEmoticonIcon></InsertEmoticonIcon>
-                <NoteAddIcon></NoteAddIcon>
-                <PhotoIcon></PhotoIcon>
-                <PhonelinkLockIcon></PhonelinkLockIcon>
-                <CreateIcon></CreateIcon>
-                <MoreVertIcon></MoreVertIcon>
-                <DeleteIcon></DeleteIcon>
+            <div className="compose-footer">
+                <div className="compose-footerLeft">
+                    <button type="submit">
+                        Send <ArrowDropDownIcon></ArrowDropDownIcon>
+                    </button>
+                </div>
+
+                <div className="compose-footerRight">
+                    <FormatColorTextIcon></FormatColorTextIcon>
+                    <AttachFileIcon></AttachFileIcon>
+                    <LinkIcon></LinkIcon>
+                    <InsertEmoticonIcon></InsertEmoticonIcon>
+                    <NoteAddIcon></NoteAddIcon>
+                    <PhotoIcon></PhotoIcon>
+                    <PhonelinkLockIcon></PhonelinkLockIcon>
+                    <CreateIcon></CreateIcon>
+                    <MoreVertIcon></MoreVertIcon>
+                    <DeleteIcon></DeleteIcon>
+                </div>
             </div>
-        </div>
+        </form>
     </div>;
 };
 
