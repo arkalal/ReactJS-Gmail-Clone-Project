@@ -7,8 +7,21 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import HelpOutlinedIcon from '@mui/icons-material/HelpOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AppsIcon from '@mui/icons-material/Apps';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux store/userSlice';
 
 const Header = () => {
+
+    const user = useSelector((state) => state.user.user)
+    console.log(user)
+    const dispatch = useDispatch()
+
+    const logMeOut = (e) => {
+        e.preventDefault()
+
+        dispatch(logout())
+    }
+
     return <div className='header'>
         <div className="header-left">
             <IconButton>
@@ -44,7 +57,7 @@ const Header = () => {
                 <AppsIcon></AppsIcon>
             </IconButton>
 
-            <Avatar src='https://lh3.googleusercontent.com/ogw/ADea4I51dMikJltVkYJVQk7gCUJZ65aDUZ4acmivr1_S=s64-c-mo'></Avatar>
+            <Avatar src={user?.photoUrl} onClick={logMeOut}></Avatar>
         </div>
     </div>;
 };

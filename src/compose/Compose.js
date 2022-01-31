@@ -14,12 +14,14 @@ import PhonelinkLockIcon from '@mui/icons-material/PhonelinkLock';
 import CreateIcon from '@mui/icons-material/Create';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggFalse } from '../redux store/composeSlice';
 import { db } from '../firebase/firebase'
 import firebase from 'firebase';
 
 const Compose = () => {
+
+    const user = useSelector((state) => state.user.user)
 
     const [Email, setEmail] = useState('');
     const [Subject, setSubject] = useState('');
@@ -48,6 +50,8 @@ const Compose = () => {
             email: Email,
             sub: Subject,
             emailText: Message,
+            from: user.email,
+            fromName: user.name,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
 

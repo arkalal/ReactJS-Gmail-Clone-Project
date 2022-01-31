@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { openMessage } from '../redux store/composeSlice';
 
-const EmailBody = ({ name, subject, message, time }) => {
+const EmailBody = ({ name, subject, message, time, email }) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -17,7 +17,8 @@ const EmailBody = ({ name, subject, message, time }) => {
             name,
             subject,
             message,
-            time
+            time,
+            email
         }))
 
         navigate('/mailbox')

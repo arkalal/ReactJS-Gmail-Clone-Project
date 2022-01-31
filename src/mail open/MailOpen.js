@@ -45,7 +45,7 @@ const MailOpen = () => {
                     </IconButton>
 
                     <h4> {emailDetailsOnBody.name} </h4>
-                    <p>arkalal.chakravarty@gmail.com</p>
+                    <p> {emailDetailsOnBody.email} </p>
                 </div>
 
                 <div className="emailDetails-MiddleHeaderRight">
