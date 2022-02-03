@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css'
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
@@ -21,29 +21,36 @@ import { hideEmail, showEmail } from '../redux store/sentRecordSlice'
 
 const Sidebar = () => {
 
+    const [SetActiveBut, setSetActiveBut] = useState(false);
+    const [SetSend, setSetSend] = useState(false);
     const dispatch = useDispatch()
 
     const openCompose = () => {
         dispatch(toggTrue())
     }
 
-    const getSentEmail = () => {
-        dispatch(showEmail())
-    }
-
     const hideSentEmail = () => {
         dispatch(hideEmail())
+        setSetActiveBut(true)
+        setSetSend(false)
     }
+
+    const getSentEmail = () => {
+        dispatch(showEmail())
+        setSetSend(true)
+        setSetActiveBut(false)
+    }
+
 
     return <div className='sidebar'>
         <Button startIcon={<AddIcon></AddIcon>} className='composeBtn' onClick={openCompose}>Compose</Button>
 
         <div className="sideBarIcons">
-            <SidebarOptions Icon={InboxIcon} title='Inbox' number='500' onClick={hideSentEmail}></SidebarOptions>
+            <SidebarOptions Icon={InboxIcon} title='Inbox' number='500' isActive={SetActiveBut} onClick={hideSentEmail}></SidebarOptions>
             <SidebarOptions Icon={StarIcon} title='Starred' number='224'></SidebarOptions>
             <SidebarOptions Icon={WatchLaterIcon} title='Snoozed' number='254'></SidebarOptions>
             <SidebarOptions Icon={LabelImportantIcon} title='Important' number='452'></SidebarOptions>
-            <SidebarOptions Icon={SendIcon} title='Sent' number='224' onClick={getSentEmail}></SidebarOptions>
+            <SidebarOptions Icon={SendIcon} title='Sent' number='224' setSend={SetSend} onClick={getSentEmail}></SidebarOptions>
             <SidebarOptions Icon={DraftsIcon} title='Drafts' number='224'></SidebarOptions>
             <SidebarOptions Icon={LabelIcon} title='Category' number='224'></SidebarOptions>
             <SidebarOptions Icon={DeleteIcon} title='[Map]/Trash' number='224'></SidebarOptions>
