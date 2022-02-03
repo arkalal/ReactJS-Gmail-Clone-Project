@@ -45,3 +45,13 @@
     box-shadow: 0 0 3px #ccc;
     height: 100%;
 }
+
+.emailDetail{
+    position: relative;
+}
+
+.copyrightArka{
+    position: absolute;
+    bottom: 0;
+    left: 34%;
+}

@@ -68,6 +68,9 @@ const MailOpen = () => {
             <div className="emailDetails-Body">
                 <p> {emailDetailsOnBody.message} </p>
             </div>
+
+
+            <p className='copyrightArka'>&copy; Developed by Arka Lal Chakravarty</p>
         </div>
     </div>;
 };
