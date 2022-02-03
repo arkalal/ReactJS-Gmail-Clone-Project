@@ -24,8 +24,7 @@ const App = () => {
                 dispatch(login({
                     name: userAuth.displayName,
                     email: userAuth.email,
-                    uid: userAuth.uid,
-                    photoUrl: userAuth.photoURL
+                    photoURL: userAuth.photoURL
                 }))
             } else {
                 dispatch(logout())

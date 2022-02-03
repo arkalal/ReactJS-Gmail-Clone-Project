@@ -16,7 +16,7 @@ const Login = () => {
                 name: userAuth.user.displayName,
                 email: userAuth.user.email,
                 uid: userAuth.user.uid,
-                photoUrl: userAuth.user.photoURL
+                photoURL: userAuth.user.photoURL
             }))
         }).catch((error) => {
             alert(error)

@@ -49,7 +49,7 @@ const MailOpen = () => {
                 </div>
 
                 <div className="emailDetails-MiddleHeaderRight">
-                    <p>Mon, 12 Jul 2021 14:23:14 GMT</p>
+                    <p> {emailDetailsOnBody.time} </p>
 
                     <IconButton>
                         <StarIcon></StarIcon>
