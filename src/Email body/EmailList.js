@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { db } from '../firebase/firebase';
 import EmailBody from './EmailBody';
 import './EmailList.css'
@@ -8,6 +9,8 @@ import EmailType from './EmailType';
 const EmailList = () => {
 
     const [Emails, setEmails] = useState([]);
+    const user = useSelector((state) => state.user.user)
+    const sentRecord = useSelector((state) => state.sentRecord.value)
 
     useEffect(() => {
         db.collection('composeData').orderBy('timestamp', 'desc').onSnapshot((collection) => {
@@ -24,7 +27,14 @@ const EmailList = () => {
 
         {
             Emails.map(({ id, data }) => {
-                return <EmailBody key={id} email={data.from} name={data.fromName} message={data.emailText} time={new Date(data.timestamp?.seconds * 1000).toLocaleTimeString()} subject={data.sub}></EmailBody>
+                return (
+                    <> {data.email === user.email && <EmailBody key={id} email={data.from} name={data.fromName} message={data.emailText} time={new Date(data.timestamp?.seconds * 1000).toLocaleTimeString()} subject={data.sub}></EmailBody>}
+
+                        {
+                            sentRecord === true && <EmailBody key={id} email={data.from} name={data.fromName} message={data.emailText} time={new Date(data.timestamp?.seconds * 1000).toLocaleTimeString()} subject={data.sub}></EmailBody>
+                        }
+                    </>
+                )
             })
         }
     </div>;

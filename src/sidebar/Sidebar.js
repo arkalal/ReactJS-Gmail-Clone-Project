@@ -17,6 +17,7 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import { useDispatch } from 'react-redux';
 import { toggTrue } from '../redux store/composeSlice'
+import { hideEmail, showEmail } from '../redux store/sentRecordSlice'
 
 const Sidebar = () => {
 
@@ -26,15 +27,23 @@ const Sidebar = () => {
         dispatch(toggTrue())
     }
 
+    const getSentEmail = () => {
+        dispatch(showEmail())
+    }
+
+    const hideSentEmail = () => {
+        dispatch(hideEmail())
+    }
+
     return <div className='sidebar'>
         <Button startIcon={<AddIcon></AddIcon>} className='composeBtn' onClick={openCompose}>Compose</Button>
 
         <div className="sideBarIcons">
-            <SidebarOptions Icon={InboxIcon} title='Inbox' number='500' isActive></SidebarOptions>
+            <SidebarOptions Icon={InboxIcon} title='Inbox' number='500' onClick={hideSentEmail}></SidebarOptions>
             <SidebarOptions Icon={StarIcon} title='Starred' number='224'></SidebarOptions>
             <SidebarOptions Icon={WatchLaterIcon} title='Snoozed' number='254'></SidebarOptions>
             <SidebarOptions Icon={LabelImportantIcon} title='Important' number='452'></SidebarOptions>
-            <SidebarOptions Icon={SendIcon} title='Sent' number='224'></SidebarOptions>
+            <SidebarOptions Icon={SendIcon} title='Sent' number='224' onClick={getSentEmail}></SidebarOptions>
             <SidebarOptions Icon={DraftsIcon} title='Drafts' number='224'></SidebarOptions>
             <SidebarOptions Icon={LabelIcon} title='Category' number='224'></SidebarOptions>
             <SidebarOptions Icon={DeleteIcon} title='[Map]/Trash' number='224'></SidebarOptions>
