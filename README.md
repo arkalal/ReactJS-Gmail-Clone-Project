@@ -62,7 +62,7 @@ Now let's come down to how you can use the app..
 
 ![EMAILRECIEVE](/public/screenshots/emailRecieving.png)
 
-    He can also click the email body and the email will get open in full window mode where he can read the subject and and the entire email that you have send from my app. View the sample 👇🏻🤟🚀
+He can also click the email body and the email will get open in full window mode where he can read the subject and and the entire email that you have send from my app. View the sample 👇🏻🤟🚀
 
 ![INBOXBODY](/public/screenshots/inboxBody.png)
 
